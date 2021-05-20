@@ -1,0 +1,23 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile:sass" : "node-sass ./sass/main.scss ./css/styles.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UEHG260899/natours.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UEHG260899/natours/issues"
+  },
+  "homepage": "https://github.com/UEHG260899/natours#readme",
+  "devDependencies": {
+    "node-sass": "^6.0.0"
+  }
+}
