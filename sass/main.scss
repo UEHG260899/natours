@@ -4,6 +4,7 @@ $color-primary-dark: #28b485;
 
 $color-gray-dark: #777;
 $color-white: #fff;
+$color-black: #000;
 
 *,
 *::after,
@@ -39,27 +40,27 @@ body {
     background-position: top;
     /*Genera un poligono en la forma*/
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+    &__logo-box {
+        position: absolute;
+        top: 4rem;
+        left: 4rem;
+    }
+
+    &__logo {
+        height: 3.5rem;
+    }
+
+    &__text-box {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        /*Compensando el desplazamiento*/
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
 }
 
-.header__logo-box {
-    position: absolute;
-    top: 4rem;
-    left: 4rem;
-}
-
-.header__logo {
-    height: 3.5rem;
-}
-
-
-.header__text-box {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    /*Compensando el desplazamiento*/
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
 
 .heading-primary {
     color: $color-white;
@@ -67,27 +68,29 @@ body {
     /*Arregla bugs con las animaciones*/
     backface-visibility: hidden;
     margin-bottom: 6rem;
+
+    &--main {
+        display: block;
+        font-size: 6rem; /*3.75rem*/
+        font-weight: 400;
+        letter-spacing: 3.5rem;
+        padding-left: 3.5rem;
+        animation-name: moveInLeft;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+    }
+
+    &--sub {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1.75rem;
+        padding-left: 1.75rem;
+        animation: moveInRight 1s ease-out;
+    }
 }
 
-.heading-primary--main {
-    display: block;
-    font-size: 6rem; /*3.75rem*/
-    font-weight: 400;
-    letter-spacing: 3.5rem;
-    padding-left: 3.5rem;
-    animation-name: moveInLeft;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
-}
 
-.heading-primary--sub {
-    display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1.75rem;
-    padding-left: 1.75rem;
-    animation: moveInRight 1s ease-out;
-}
 
 @keyframes moveInLeft {
     0% {
@@ -133,55 +136,59 @@ body {
     }
 }
 
-.btn:link,
-.btn:visited {
-    text-transform: uppercase;
-    font-size: 1.6rem;
-    text-decoration: none;
-    padding: 1.5rem 4rem;
-    display: inline-block;
-    border-radius: 10rem;
-    transition: all 0.2s ;
-    position: relative;
+.btn {
+    
+    &:link,
+    &:visited {
+        text-transform: uppercase;
+        font-size: 1.6rem;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block;
+        border-radius: 10rem;
+        transition: all 0.2s ;
+        position: relative;
+    }
+
+    &:hover {
+        transform: translateY(-.3rem);
+        box-shadow: 0 1rem 2rem rgba($color-black,.2);
+
+        &::after {
+            transform: scale(1.4, 1.6);
+            opacity: 0;
+        }
+    }
+
+    //En relación a la posición inical
+    &:active {
+        transform: translateY(-.1rem);
+        box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+    }
+
+    &--white {
+        background-color: $color-white;
+        color: $color-gray-dark;
+    }
+
+    &::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all .4s;
+        background-color: $color-white;
+    }
+
+    &--animated {
+        animation: moveInBottom .5s ease-out .75s;
+        /*Toma los valores de 0% del keyframe*/
+        animation-fill-mode: backwards;
+    }
 }
 
-.btn:hover {
-    transform: translateY(-.3rem);
-    box-shadow: 0 1rem 2rem rgba(0,0,0,.2);
-}
-
-/*En relación a la posición inical*/
-.btn:active {
-    transform: translateY(-.1rem);
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
-}
-
-.btn--white {
-    background-color: $color-white;
-    color: $color-gray-dark;
-}
-
-.btn::after {
-    content: "";
-    display: inline-block;
-    height: 100%;
-    width: 100%;
-    border-radius: 10rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: all .4s;
-    background-color: $color-white;
-}
-
-.btn:hover::after {
-    transform: scale(1.4, 1.6);
-    opacity: 0;
-}
-
-.btn--animated {
-    animation: moveInBottom .5s ease-out .75s;
-    /*Toma los valores de 0% del keyframe*/
-    animation-fill-mode: backwards;
-}
